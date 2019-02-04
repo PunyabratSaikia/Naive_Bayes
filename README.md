@@ -1,4 +1,4 @@
-# Gaussian_Naive_Bayes
+# Gaussian_Naive_Bayes2
 Implementation of gaussian naive bayes on a set of two classes.
 
 
