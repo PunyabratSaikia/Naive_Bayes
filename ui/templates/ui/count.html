@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+
+<h1>SPAM DETECTOR</h1>
+
+<a href="{% url 'home' %}">Start Again</a>
+
+<div id="piechart"></div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+
+function drawChart() {
+
+  let spam_score = {{spam_score}};
+  let ham_score = {{ham_score}};
+
+  if(ham_score<0)
+  ham_score*=-1;
+
+  if(spam_score<0)
+  spam_score*=-1;
+
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  ['HAM', ham_score],
+  ['SPAM',spam_score],
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'Title':'Spam-Ham prediction', 'width':550, 'height':400};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+</script>
+
+</body>
+</html>
